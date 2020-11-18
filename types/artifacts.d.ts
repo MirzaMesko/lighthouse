@@ -713,11 +713,11 @@ declare global {
       export interface Form {
         /** If attributes is missing that means this is a formless set of elements. */
         attributes?: {
-          node: NodeDetails;
           id: string;
           name: string;
           autocomplete: string;
         };
+        node: NodeDetails | null;
         inputs: Array<FormInput>;
         labels: Array<FormLabel>;
       }
@@ -732,15 +732,13 @@ declare global {
           attribute: string | null;
           prediction: string | null;
         }
-        nodeLabel: string;
-        snippet: string;
+        node: NodeDetails;
       }
 
       /** Attributes collected for every label element in the labels array from the forms interface */
       export interface FormLabel {
         for: string;
-        nodeLabel: string;
-        snippet: string;
+        node: NodeDetails;
       }
 
       /** Information about an event listener registered on the global object. */

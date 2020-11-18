@@ -23,6 +23,7 @@ function collectFormElements() {
   const forms = new Map();
   /** @type {LH.Artifacts.Form} */
   const formlessObj = {
+    node: null,
     inputs: [],
     labels: [],
   };
@@ -39,17 +40,15 @@ function collectFormElements() {
           id: parentFormElement.id,
           name: parentFormElement.name,
           autocomplete: parentFormElement.autocomplete,
-          // @ts-expect-error - getNodeDetails put into scope via stringification
-          node: getNodeDetails(parentFormElement),
         },
+        // @ts-expect-error - getNodeDetails put into scope via stringification
+        node: getNodeDetails(parentFormElement),
         inputs: [],
         labels: [],
       };
       forms.set(parentFormElement, newFormObj);
     }
     const formObj = forms.get(parentFormElement) || formlessObj;
-    // @ts-expect-error - getNodeDetails put into scope via stringification
-    const nodeDetails = getNodeDetails(child);
     if (child instanceof HTMLInputElement || child instanceof HTMLTextAreaElement
       || child instanceof HTMLSelectElement) {
       formObj.inputs.push({
@@ -61,23 +60,22 @@ function collectFormElements() {
           attribute: child.getAttribute('autocomplete'),
           prediction: child.getAttribute('autofill-prediction'),
         },
-        nodeLabel: nodeDetails.nodeLabel,
-        snippet: nodeDetails.snippet,
+        // @ts-expect-error - getNodeDetails put into scope via stringification
+        node: getNodeDetails(child),
       });
     }
     if (child instanceof HTMLLabelElement) {
-      // @ts-expect-error - getNodeDetails put into scope via stringification
-      const nodeDetails = getNodeDetails(child);
       formObj.labels.push({
         for: child.htmlFor,
-        nodeLabel: nodeDetails.nodeLabel,
-        snippet: nodeDetails.snippet,
+        // @ts-expect-error - getNodeDetails put into scope via stringification
+        node: getNodeDetails(child),
       });
     }
   }
 
   if (formlessObj.inputs.length > 0 || formlessObj.labels.length > 0) {
     forms.set('formless', {
+      node: formlessObj.node,
       inputs: formlessObj.inputs,
       labels: formlessObj.labels,
     });
