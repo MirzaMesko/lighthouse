@@ -27,7 +27,7 @@ declare global {
       /** The ISO-8601 timestamp of when the test page was fetched and artifacts collected. */
       fetchTime: string;
       /** A set of warnings about unexpected things encountered while loading and testing the page. */
-      LighthouseRunWarnings: string[];
+      LighthouseRunWarnings: Array<string | IcuMessage>;
       /** Whether the page was loaded on either a real or emulated mobile device. */
       TestedAsMobileDevice: boolean;
       /** Device which Chrome is running on. */
@@ -82,8 +82,6 @@ declare global {
       ScriptElements: Array<Artifacts.ScriptElement>;
       /** The dimensions and devicePixelRatio of the loaded viewport. */
       ViewportDimensions: Artifacts.ViewportDimensions;
-      /** All the form elements in the page and formless inputs. */
-      FormElements: Artifacts.Form[];
     }
 
     /**
@@ -112,6 +110,8 @@ declare global {
       Fonts: Artifacts.Font[];
       /** Information on poorly sized font usage and the text affected by it. */
       FontSize: Artifacts.FontSize;
+      /** All the form elements in the page and formless inputs. */
+      FormElements: Artifacts.Form[];
       /** Screenshot of the entire page (rather than just the above the fold content). */
       FullPageScreenshot: Artifacts.FullPageScreenshot | null;
       /** Information about event listeners registered on the global object. */
@@ -206,8 +206,8 @@ declare global {
       export interface DOMStats {
         /** The total number of elements found within the page's body. */
         totalBodyElements: number;
-        width: {max: number, pathToElement: Array<string>, snippet: string};
-        depth: {max: number, pathToElement: Array<string>, snippet: string};
+        width: NodeDetails & {max: number;};
+        depth: NodeDetails & {max: number;};
       }
 
       export interface EmbeddedContentInfo {
@@ -332,7 +332,7 @@ declare global {
           files: Record<string, number>;
           unmappedBytes: number;
           totalBytes: number;
-        };
+        } | {errorMessage: string};
       }
 
       /** @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#Attributes */
@@ -391,6 +391,7 @@ declare global {
             parentRule?: {origin: Crdp.CSS.StyleSheetOrigin, selectors: {text: string}[]};
             styleSheetId?: string;
             stylesheet?: Crdp.CSS.CSSStyleSheetHeader;
+            cssProperties?: Array<Crdp.CSS.CSSProperty>;
           }
         }>
       }

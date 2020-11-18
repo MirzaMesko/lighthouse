@@ -57,6 +57,8 @@ function getHTMLImages(allElements) {
 
   return allImageElements.map(element => {
     const computedStyle = window.getComputedStyle(element);
+    const isPicture = !!element.parentElement && element.parentElement.tagName === 'PICTURE';
+    const canTrustNaturalDimensions = !isPicture && !element.srcset;
     return {
       // currentSrc used over src to get the url as determined by the browser
       // after taking into account srcset/media/sizes/etc.
@@ -65,18 +67,18 @@ function getHTMLImages(allElements) {
       displayedWidth: element.width,
       displayedHeight: element.height,
       clientRect: getClientRect(element),
-      naturalWidth: element.naturalWidth,
-      naturalHeight: element.naturalHeight,
+      naturalWidth: canTrustNaturalDimensions ? element.naturalWidth : 0,
+      naturalHeight: canTrustNaturalDimensions ? element.naturalHeight : 0,
       attributeWidth: element.getAttribute('width') || '',
       attributeHeight: element.getAttribute('height') || '',
       cssWidth: undefined, // this will get overwritten below
       cssHeight: undefined, // this will get overwritten below
       cssComputedPosition: getPosition(element, computedStyle),
       isCss: false,
+      isPicture,
       // @ts-expect-error: loading attribute not yet added to HTMLImageElement definition.
       loading: element.loading,
       resourceSize: 0, // this will get overwritten below
-      isPicture: !!element.parentElement && element.parentElement.tagName === 'PICTURE',
       usesObjectFit: ['cover', 'contain', 'scale-down', 'none'].includes(
         computedStyle.getPropertyValue('object-fit')
       ),
@@ -175,14 +177,14 @@ function determineNaturalSize(url) {
 }
 
 /**
- * @param {LH.Crdp.CSS.CSSStyle} [style]
+ * @param {Partial<Pick<LH.Crdp.CSS.CSSStyle, 'cssProperties'>>|undefined} rule
  * @param {string} property
  * @return {string | undefined}
  */
-function findSizeDeclaration(style, property) {
-  if (!style) return;
+function findSizeDeclaration(rule, property) {
+  if (!rule || !rule.cssProperties) return;
 
-  const definedProp = style.cssProperties.find(({name}) => name === property);
+  const definedProp = rule.cssProperties.find(({name}) => name === property);
   if (!definedProp) return;
 
   return definedProp.value;
@@ -191,7 +193,7 @@ function findSizeDeclaration(style, property) {
 /**
  * Finds the most specific directly matched CSS font-size rule from the list.
  *
- * @param {Array<LH.Crdp.CSS.RuleMatch>} [matchedCSSRules]
+ * @param {Array<LH.Crdp.CSS.RuleMatch>|undefined} matchedCSSRules
  * @param {string} property
  * @returns {string | undefined}
  */
@@ -201,8 +203,7 @@ function findMostSpecificCSSRule(matchedCSSRules, property) {
   const rule = FontSize.findMostSpecificMatchedCSSRule(matchedCSSRules, isDeclarationofInterest);
   if (!rule) return;
 
-  // @ts-expect-error style is guaranteed to exist if a rule exists
-  return findSizeDeclaration(rule.style, property);
+  return findSizeDeclaration(rule, property);
 }
 
 /**
@@ -289,9 +290,12 @@ class ImageElements extends Gatherer {
   async afterPass(passContext, loadData) {
     const driver = passContext.driver;
     const indexedNetworkRecords = loadData.networkRecords.reduce((map, record) => {
+      // An image response in newer formats is sometimes incorrectly marked as "application/octet-stream",
+      // so respect the extension too.
+      const isImage = /^image/.test(record.mimeType) || /\.(avif|webp)$/i.test(record.url);
       // The network record is only valid for size information if it finished with a successful status
-      // code that indicates a complete resource response.
-      if (/^image/.test(record.mimeType) && record.finished && record.statusCode === 200) {
+      // code that indicates a complete image response.
+      if (isImage && record.finished && record.statusCode === 200) {
         map[record.url] = record;
       }
 
@@ -346,7 +350,6 @@ class ImageElements extends Gatherer {
       // or it's not in the top 50 largest images.
       if (
         (element.isPicture || element.isCss || element.srcset) &&
-        networkRecord &&
         top50Images.includes(networkRecord)
       ) {
         element = await this.fetchElementWithSizeInformation(driver, element);

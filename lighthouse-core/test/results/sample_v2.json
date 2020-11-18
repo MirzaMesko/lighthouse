@@ -8,7 +8,7 @@
       "axe-core": "3.5.5"
     }
   },
-  "lighthouseVersion": "6.3.0",
+  "lighthouseVersion": "6.4.1",
   "fetchTime": "2018-03-13T00:55:45.840Z",
   "requestedUrl": "http://localhost:10200/dobetterweb/dbw_tester.html",
   "finalUrl": "http://localhost:10200/dobetterweb/dbw_tester.html",
@@ -17,7 +17,7 @@
     "is-on-https": {
       "id": "is-on-https",
       "title": "Does not use HTTPS",
-      "description": "All sites should be protected with HTTPS, even ones that don't handle sensitive data. This includes avoiding [mixed content](https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content), where some resources are loaded over HTTP despite the initial request being servedover HTTPS. HTTPS prevents intruders from tampering with or passively listening in on the communications between your app and your users, and is a prerequisite for HTTP/2 and many new web platform APIs. [Learn more](https://web.dev/is-on-https/).",
+      "description": "All sites should be protected with HTTPS, even ones that don't handle sensitive data. This includes avoiding [mixed content](https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content), where some resources are loaded over HTTP despite the initial request being served over HTTPS. HTTPS prevents intruders from tampering with or passively listening in on the communications between your app and your users, and is a prerequisite for HTTP/2 and many new web platform APIs. [Learn more](https://web.dev/is-on-https/).",
       "score": 0,
       "scoreDisplayMode": "binary",
       "displayValue": "1 insecure request found",
@@ -603,8 +603,7 @@
       "title": "Content is sized correctly for the viewport",
       "description": "If the width of your app's content doesn't match the width of the viewport, your app might not be optimized for mobile screens. [Learn more](https://web.dev/content-width/).",
       "score": 1,
-      "scoreDisplayMode": "binary",
-      "explanation": ""
+      "scoreDisplayMode": "binary"
     },
     "image-aspect-ratio": {
       "id": "image-aspect-ratio",
@@ -689,8 +688,8 @@
             "displayedSize": "4800 x 3180",
             "actualSize": "480 x 318",
             "actualPixels": 152640,
-            "expectedSize": "12600 x 8348",
-            "expectedPixels": 105184800
+            "expectedSize": "9600 x 6360",
+            "expectedPixels": 61056000
           },
           {
             "url": "http://localhost:59630/dobetterweb/lighthouse-rotating.gif",
@@ -698,8 +697,8 @@
             "displayedSize": "811 x 462",
             "actualSize": "811 x 462",
             "actualPixels": 374682,
-            "expectedSize": "2129 x 1213",
-            "expectedPixels": 2582477
+            "expectedSize": "1622 x 924",
+            "expectedPixels": 1498728
           }
         ]
       }
@@ -996,6 +995,11 @@
             "text": "URL"
           },
           {
+            "key": "protocol",
+            "itemType": "text",
+            "text": "Protocol"
+          },
+          {
             "key": "startTime",
             "itemType": "ms",
             "granularity": 1,
@@ -1040,6 +1044,7 @@
         "items": [
           {
             "url": "http://localhost:10200/dobetterweb/dbw_tester.html",
+            "protocol": "http/1.1",
             "startTime": 0,
             "endTime": 640.1550000009593,
             "finished": true,
@@ -1051,6 +1056,7 @@
           },
           {
             "url": "http://localhost:10200/dobetterweb/dbw_tester.css?delay=2000&async=true",
+            "protocol": "http/1.1",
             "startTime": 630.2950000099372,
             "endTime": 2635.035000013886,
             "finished": true,
@@ -1062,6 +1068,7 @@
           },
           {
             "url": "http://localhost:10200/dobetterweb/dbw_tester.css?delay=100",
+            "protocol": "http/1.1",
             "startTime": 635.496000002604,
             "endTime": 1204.6590000099968,
             "finished": true,
@@ -1073,6 +1080,7 @@
           },
           {
             "url": "http://localhost:10200/dobetterweb/unknown404.css?delay=200",
+            "protocol": "http/1.1",
             "startTime": 636.6400000115391,
             "endTime": 1213.2910000218544,
             "finished": true,
@@ -1084,6 +1092,7 @@
           },
           {
             "url": "http://localhost:10200/dobetterweb/dbw_tester.css?delay=2200",
+            "protocol": "http/1.1",
             "startTime": 638.0040000076406,
             "endTime": 2849.3670000170823,
             "finished": true,
@@ -1095,6 +1104,7 @@
           },
           {
             "url": "http://localhost:10200/dobetterweb/dbw_disabled.css?delay=200&isdisabled",
+            "protocol": "http/1.1",
             "startTime": 638.7899999972433,
             "endTime": 1220.04100002232,
             "finished": true,
@@ -1106,6 +1116,7 @@
           },
           {
             "url": "http://localhost:10200/dobetterweb/dbw_partial_a.html?delay=200",
+            "protocol": "http/1.1",
             "startTime": 640.5979999981355,
             "endTime": 1228.5180000180844,
             "finished": true,
@@ -1117,6 +1128,7 @@
           },
           {
             "url": "http://localhost:10200/dobetterweb/dbw_partial_b.html?delay=200&isasync",
+            "protocol": "http/1.1",
             "startTime": 641.3450000109151,
             "endTime": 1776.4320000133011,
             "finished": true,
@@ -1128,6 +1140,7 @@
           },
           {
             "url": "http://localhost:10200/dobetterweb/dbw_tester.css?delay=3000&async=true",
+            "protocol": "http/1.1",
             "startTime": 642.8679999953602,
             "endTime": 4216.161000018474,
             "finished": true,
@@ -1139,6 +1152,7 @@
           },
           {
             "url": "http://localhost:10200/dobetterweb/dbw_tester.js",
+            "protocol": "http/1.1",
             "startTime": 644.0820000134408,
             "endTime": 1792.0860000012908,
             "finished": true,
@@ -1150,6 +1164,7 @@
           },
           {
             "url": "http://localhost:10200/dobetterweb/empty_module.js?delay=500",
+            "protocol": "http/1.1",
             "startTime": 645.529000001261,
             "endTime": 1236.1859999946319,
             "finished": true,
@@ -1161,6 +1176,7 @@
           },
           {
             "url": "http://localhost:10200/dobetterweb/lighthouse-480x318.jpg",
+            "protocol": "http/1.1",
             "startTime": 3951.6250000160653,
             "endTime": 4779.641000000993,
             "finished": true,
@@ -1172,6 +1188,7 @@
           },
           {
             "url": "http://localhost:10200/zone.js",
+            "protocol": "http/1.1",
             "startTime": 2849.7340000176337,
             "endTime": 3961.049000005005,
             "finished": true,
@@ -1183,6 +1200,7 @@
           },
           {
             "url": "http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js",
+            "protocol": "http/1.1",
             "startTime": 3874.7540000185836,
             "endTime": 4796.288000012282,
             "finished": true,
@@ -1194,6 +1212,7 @@
           },
           {
             "url": "http://localhost:10200/dobetterweb/dbw_tester.css?scriptActivated&delay=200",
+            "protocol": "http/1.1",
             "startTime": 2924.34100000537,
             "endTime": 3964.233000006061,
             "finished": true,
@@ -1205,6 +1224,7 @@
           },
           {
             "url": "http://localhost:10200/dobetterweb/dbw_tester.html",
+            "protocol": "http/1.1",
             "startTime": 3066.252999997232,
             "endTime": 3772.7560000203084,
             "finished": true,
@@ -1216,6 +1236,7 @@
           },
           {
             "url": "blob:http://localhost:10200/ae0eac03-ab9b-4a6a-b299-f5212153e277",
+            "protocol": "blob",
             "startTime": 3829.6360000094865,
             "endTime": 3968.59800000675,
             "finished": true,
@@ -1227,6 +1248,7 @@
           },
           {
             "url": "http://localhost:10200/favicon.ico",
+            "protocol": "http/1.1",
             "startTime": 4967.373000021325,
             "endTime": 5536.498000001302,
             "finished": true,
@@ -1972,20 +1994,6 @@
         ]
       }
     },
-    "large-javascript-libraries": {
-      "id": "large-javascript-libraries",
-      "title": "Avoids large JavaScript libraries with smaller alternatives",
-      "description": "Large JavaScript libraries can lead to poor performance. Prefer smaller, functionally equivalent libraries to reduce your bundle size. [Learn more](https://developers.google.com/web/fundamentals/performance/webpack/decrease-frontend-size#optimize_dependencies).",
-      "score": 1,
-      "scoreDisplayMode": "binary",
-      "displayValue": "0 large libraries found",
-      "details": {
-        "type": "table",
-        "headings": [],
-        "items": [],
-        "summary": {}
-      }
-    },
     "valid-source-maps": {
       "id": "valid-source-maps",
       "title": "Page has valid source maps",
@@ -1996,6 +2004,22 @@
         "type": "table",
         "headings": [],
         "items": []
+      }
+    },
+    "preload-lcp-image": {
+      "id": "preload-lcp-image",
+      "title": "Preload Largest Contentful Paint image",
+      "description": "Preload the image used by the LCP element in order to improve your LCP time. [Learn more](https://web.dev/optimize-lcp/#preload-important-resources).",
+      "score": 1,
+      "scoreDisplayMode": "numeric",
+      "numericValue": 0,
+      "numericUnit": "millisecond",
+      "displayValue": "",
+      "details": {
+        "type": "opportunity",
+        "headings": [],
+        "items": [],
+        "overallSavingsMs": 0
       }
     },
     "pwa-cross-browser": {
@@ -3480,7 +3504,7 @@
     "charset": {
       "id": "charset",
       "title": "Charset declaration is missing or occurs too late in the HTML",
-      "description": "A character encoding declaration is required. It can be done with a <meta> tag in the first 1024 bytes of the HTML or in the Content-Type HTTP response header. [Learn more](https://web.dev/charset/).",
+      "description": "A character encoding declaration is required. It can be done with a `<meta>` tag in the first 1024 bytes of the HTML or in the Content-Type HTTP response header. [Learn more](https://web.dev/charset/).",
       "score": 0,
       "scoreDisplayMode": "binary"
     },
@@ -3490,9 +3514,9 @@
       "description": "A large DOM will increase memory usage, cause longer [style calculations](https://developers.google.com/web/fundamentals/performance/rendering/reduce-the-scope-and-complexity-of-style-calculations), and produce costly [layout reflows](https://developers.google.com/speed/articles/reflow). [Learn more](https://web.dev/dom-size/).",
       "score": 1,
       "scoreDisplayMode": "numeric",
-      "numericValue": 31,
+      "numericValue": 148,
       "numericUnit": "element",
-      "displayValue": "31 elements",
+      "displayValue": "148 elements",
       "details": {
         "type": "table",
         "headings": [
@@ -3502,8 +3526,8 @@
             "text": "Statistic"
           },
           {
-            "key": "element",
-            "itemType": "code",
+            "key": "node",
+            "itemType": "node",
             "text": "Element"
           },
           {
@@ -3515,24 +3539,29 @@
         "items": [
           {
             "statistic": "Total DOM Elements",
-            "element": "",
-            "value": "31"
+            "value": 148
           },
           {
+            "node": {
+              "type": "node",
+              "path": "3,HTML,1,BODY,7,DIV,3,svg,0,title",
+              "snippet": "<title id=\"social-facebook-5\">",
+              "selector": "body > div > svg.social-facebook > title#social-facebook-5",
+              "nodeLabel": "title"
+            },
             "statistic": "Maximum DOM Depth",
-            "element": {
-              "type": "code",
-              "value": "<h2>"
-            },
-            "value": "3"
+            "value": 4
           },
           {
-            "statistic": "Maximum Child Elements",
-            "element": {
-              "type": "code",
-              "value": "<body>"
+            "node": {
+              "type": "node",
+              "path": "3,HTML,1,BODY,4,DIV,a,#document-fragment",
+              "snippet": "<div id=\"shadow-root-container\">",
+              "selector": "body > div#shadow-root-container",
+              "nodeLabel": "div"
             },
-            "value": "29"
+            "statistic": "Maximum Child Elements",
+            "value": 100
           }
         ]
       }
@@ -4460,6 +4489,11 @@
           "group": "load-opportunities"
         },
         {
+          "id": "preload-lcp-image",
+          "weight": 0,
+          "group": "load-opportunities"
+        },
+        {
           "id": "total-byte-weight",
           "weight": 0,
           "group": "diagnostics"
@@ -4551,11 +4585,6 @@
         },
         {
           "id": "unsized-images",
-          "weight": 0,
-          "group": "diagnostics"
-        },
-        {
-          "id": "large-javascript-libraries",
           "weight": 0,
           "group": "diagnostics"
         },
@@ -5484,6 +5513,12 @@
       },
       {
         "startTime": 0,
+        "name": "lh:computed:PageDependencyGraph",
+        "duration": 100,
+        "entryType": "measure"
+      },
+      {
+        "startTime": 0,
         "name": "lh:audit:redirects",
         "duration": 100,
         "entryType": "measure"
@@ -5503,12 +5538,6 @@
       {
         "startTime": 0,
         "name": "lh:computed:LanternFirstContentfulPaint",
-        "duration": 100,
-        "entryType": "measure"
-      },
-      {
-        "startTime": 0,
-        "name": "lh:computed:PageDependencyGraph",
         "duration": 100,
         "entryType": "measure"
       },
@@ -5760,13 +5789,25 @@
       },
       {
         "startTime": 0,
-        "name": "lh:audit:large-javascript-libraries",
+        "name": "lh:audit:valid-source-maps",
         "duration": 100,
         "entryType": "measure"
       },
       {
         "startTime": 0,
-        "name": "lh:audit:valid-source-maps",
+        "name": "lh:audit:preload-lcp-image",
+        "duration": 100,
+        "entryType": "measure"
+      },
+      {
+        "startTime": 0,
+        "name": "lh:computed:LanternLargestContentfulPaint",
+        "duration": 100,
+        "entryType": "measure"
+      },
+      {
+        "startTime": 0,
+        "name": "lh:computed:LanternFirstContentfulPaint",
         "duration": 100,
         "entryType": "measure"
       },
@@ -7068,25 +7109,17 @@
         "audits[object-alt].details.headings[0].text",
         "audits[password-inputs-can-be-pasted-into].details.headings[0].text"
       ],
-      "lighthouse-core/audits/large-javascript-libraries.js | title": [
-        "audits[large-javascript-libraries].title"
-      ],
-      "lighthouse-core/audits/large-javascript-libraries.js | description": [
-        "audits[large-javascript-libraries].description"
-      ],
-      "lighthouse-core/audits/large-javascript-libraries.js | displayValue": [
-        {
-          "values": {
-            "libraryCount": 0
-          },
-          "path": "audits[large-javascript-libraries].displayValue"
-        }
-      ],
       "lighthouse-core/audits/valid-source-maps.js | title": [
         "audits[valid-source-maps].title"
       ],
       "lighthouse-core/audits/valid-source-maps.js | description": [
         "audits[valid-source-maps].description"
+      ],
+      "lighthouse-core/audits/preload-lcp-image.js | title": [
+        "audits[preload-lcp-image].title"
+      ],
+      "lighthouse-core/audits/preload-lcp-image.js | description": [
+        "audits[preload-lcp-image].description"
       ],
       "lighthouse-core/audits/manual/pwa-cross-browser.js | title": [
         "audits[pwa-cross-browser].title"
@@ -7534,7 +7567,7 @@
       "lighthouse-core/audits/dobetterweb/dom-size.js | displayValue": [
         {
           "values": {
-            "itemCount": 31
+            "itemCount": 148
           },
           "path": "audits[dom-size].displayValue"
         }
