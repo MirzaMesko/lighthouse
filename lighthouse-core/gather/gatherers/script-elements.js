@@ -106,13 +106,6 @@ class ScriptElements extends Gatherer {
         matchedScriptElement.requestId = record.requestId;
         matchedScriptElement.content = content;
       } else {
-        const node = {
-          devtoolsNodePath: '',
-          selector: '',
-          nodeLabel: '',
-          boundingRect: null,
-          snippet: '',
-        };
         scripts.push({
           type: null,
           src: record.url,
@@ -122,7 +115,7 @@ class ScriptElements extends Gatherer {
           source: 'network',
           requestId: record.requestId,
           content,
-          node,
+          node: null,
         });
       }
     }

@@ -255,7 +255,7 @@ declare global {
         crossOrigin: string | null
         /** Where the link was found, either in the DOM or in the headers of the main document */
         source: 'head'|'body'|'headers'
-        node: NodeDetails
+        node: NodeDetails | null
       }
 
       export interface PasswordInputsWithPreventedPaste {node: NodeDetails}
@@ -268,7 +268,7 @@ declare global {
         async: boolean
         defer: boolean
         /** Details for node in DOM for the script element */
-        node: NodeDetails
+        node: NodeDetails | null
         /** Where the script was discovered, either in the head, the body, or network records. */
         source: 'head'|'body'|'network'
         /** The content of the inline script or the network record with the matching URL, null if the script had a src and no network record could be found. */
