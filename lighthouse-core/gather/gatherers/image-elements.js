@@ -139,7 +139,7 @@ function getCSSImages(allElements) {
       ),
       usesSrcSetDensityDescriptor: false,
       resourceSize: 0, // this will get overwritten below
-      // @ts-expect-error - getNodeInfo put into scope via stringification
+      // @ts-expect-error - getNodeDetails put into scope via stringification
       node: getNodeDetails(element),
     });
   }

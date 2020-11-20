@@ -109,7 +109,7 @@ describe('External anchors use rel="noopener"', () => {
 
   it('fails when links have no href attribute', () => {
     const auditResult = ExternalAnchorsAudit.audit({
-      AnchorElements: [{href: '', target: '_blank', rel: '', node}],
+      AnchorElements: [{href: '', target: '_blank', rel: '', node: {}}],
       URL: {finalUrl: URL},
     });
     assert.equal(auditResult.score, 0);
@@ -118,6 +118,7 @@ describe('External anchors use rel="noopener"', () => {
   });
 
   it('fails when links have href attribute starting with a protocol', () => {
+    const node = {};
     const auditResult = ExternalAnchorsAudit.audit({
       AnchorElements: [
         {href: 'http://', target: '_blank', rel: '', node},
