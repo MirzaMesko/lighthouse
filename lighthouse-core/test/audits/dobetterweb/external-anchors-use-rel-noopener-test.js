@@ -11,8 +11,6 @@ const assert = require('assert').strict;
 
 const URL = 'https://google.com/test';
 
-const node = {};
-
 /* eslint-env jest */
 
 describe('External anchors use rel="noopener"', () => {
