@@ -90,14 +90,15 @@ function isCandidate(image) {
 }
 
 /**
- * @param {{naturalWidth: number, naturalHeight: number, displayedWidth: number, displayedHeight: number}} image
+ * @param {LH.Artifacts.ImageElement} image
  * @param {number} DPR
- * @return {boolean}
+ * @return {image is LH.Artifacts.ImageElement & {naturalWidth: number, naturalHeight: number}}
  */
 function imageHasRightSize(image, DPR) {
   const [expectedWidth, expectedHeight] =
       allowedImageSize(image.displayedWidth, image.displayedHeight, DPR);
-  return image.naturalWidth >= expectedWidth && image.naturalHeight >= expectedHeight;
+  return typeof image.naturalWidth === 'number' && typeof image.naturalHeight === 'number' &&
+          image.naturalWidth >= expectedWidth && image.naturalHeight >= expectedHeight;
 }
 
 /**
@@ -217,11 +218,7 @@ class ImageSizeResponsive extends Audit {
     const validImages = Array
       .from(artifacts.ImageElements)
       .filter(isCandidate)
-      .filter(image => {
-        const {naturalWidth, naturalHeight} = image;
-        if (!naturalWidth || !naturalHeight) return false;
-        return !imageHasRightSize({...image, naturalWidth, naturalHeight}, DPR);
-      })
+      .filter(image => !imageHasRightSize(image, DPR))
       .filter(image => isVisible(image.clientRect, artifacts.ViewportDimensions));
 
     /** @type {Array<Result>} */
