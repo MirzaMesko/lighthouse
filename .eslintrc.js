@@ -80,6 +80,15 @@ module.exports = {
         'max-len': 0,
       },
     },
+    {
+      files: ['*.d.ts'],
+      rules: {
+        'strict': 0,
+        'no-unused-vars': 0,
+        'no-undef': 0,
+        'max-len': 0,
+      },
+    },
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {

@@ -8,30 +8,16 @@
 /* eslint-disable max-len */
 
 const yargs = require('yargs');
-const pkg = require('../package.json');
 const printer = require('./printer.js');
-
-/**
- * Remove in Node 11 - [].flatMap
- * @param {Array<Array<string>>} arr
- * @return {string[]}
- */
-function flatten(arr) {
-  /** @type {string[]} */
-  const result = [];
-  return result.concat(...arr);
-}
 
 /**
  * @param {string=} manualArgv
  * @return {LH.CliFlags}
  */
 function getFlags(manualArgv) {
-  // @ts-expect-error yargs() is incorrectly typed as not accepting a single string.
   const y = manualArgv ? yargs(manualArgv) : yargs;
-  // Intentionally left as type `any` because @types/yargs doesn't chain correctly.
+
   const argv = y.help('help')
-      .version(() => pkg.version)
       .showHelpOnFail(false, 'Specify --help for available options')
 
       .usage('lighthouse <url> <options>')
@@ -73,6 +59,7 @@ function getFlags(manualArgv) {
       .config('cli-flags-path')
 
       // List of options
+      .boolean(['verbose', 'quiet'])
       .group(['verbose', 'quiet'], 'Logging:')
       .describe({
         verbose: 'Displays verbose logging',
@@ -147,17 +134,15 @@ function getFlags(manualArgv) {
         'view': 'Open HTML report in your browser',
       })
 
-      // boolean values
       .boolean([
         'disable-storage-reset', 'save-assets', 'list-all-audits',
-        'list-trace-categories', 'view', 'verbose', 'quiet', 'help', 'print-config',
+        'list-trace-categories', 'view', 'help', 'print-config',
         'chrome-ignore-default-flags',
       ])
       .choices('emulated-form-factor', ['mobile', 'desktop', 'none'])
       .choices('throttling-method', ['devtools', 'provided', 'simulate'])
       .choices('preset', ['perf', 'experimental'])
       // force as an array
-      // note MUST use camelcase versions or only the kebab-case version will be forced
       .array('blockedUrlPatterns')
       .array('onlyAudits')
       .array('onlyCategories')
@@ -169,6 +154,7 @@ function getFlags(manualArgv) {
       .string('precomputedLanternDataPath')
       .string('lanternDataOutputPath')
       .string('budgetPath')
+      .string('output-path')
 
       // default values
       .default('chrome-flags', '')
@@ -177,7 +163,7 @@ function getFlags(manualArgv) {
       .default('hostname', 'localhost')
       .default('enable-error-reporting', undefined) // Undefined so prompted by default
       .default('channel', 'cli')
-      .check(/** @param {LH.CliFlags} argv */ (argv) => {
+      .check(argv => {
         // Lighthouse doesn't need a URL if...
         //   - We're just listing the available options.
         //   - We're just printing the config.
@@ -193,8 +179,7 @@ function getFlags(manualArgv) {
 
         throw new Error('Please provide a url');
       })
-      .epilogue(
-          'For more information on Lighthouse, see https://developers.google.com/web/tools/lighthouse/.')
+      .epilogue('For more information on Lighthouse, see https://developers.google.com/web/tools/lighthouse/.')
       .wrap(yargs.terminalWidth())
       .argv;
 
@@ -215,9 +200,12 @@ function getFlags(manualArgv) {
     const input = argv[key];
     // Truthy check is necessary. isArray convinces TS that this is an array.
     if (Array.isArray(input)) {
-      argv[key] = flatten(input.map(value => value.split(',')));
+      argv[key] = input.map(value => value.split(',')).flat();
     }
   });
+
+  const guh = argv['save-assets'];
+  const guh2 = argv.saveAssets;
 
   return argv;
 }
