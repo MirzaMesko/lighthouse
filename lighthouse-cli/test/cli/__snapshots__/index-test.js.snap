@@ -1472,9 +1472,6 @@ Object {
         Object {
           "path": "http-redirect",
         },
-        Object {
-          "path": "html-without-javascript",
-        },
       ],
       "loadFailureMode": "warn",
       "networkQuietThresholdMs": 0,

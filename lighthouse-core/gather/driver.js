@@ -648,7 +648,6 @@ class Driver {
     const waitForNavigated = options.waitForNavigated || false;
     const waitForLoad = options.waitForLoad || false;
     const passContext = /** @type {Partial<LH.Gatherer.PassContext>} */ (options.passContext || {});
-    const disableJS = passContext.disableJavaScript || false;
 
     if (waitForNavigated && (waitForFcp || waitForLoad)) {
       throw new Error('Cannot use both waitForNavigated and another event, pick just one');
@@ -667,7 +666,6 @@ class Driver {
 
     await this.sendCommand('Page.enable');
     await this.sendCommand('Page.setLifecycleEventsEnabled', {enabled: true});
-    await this.sendCommand('Emulation.setScriptExecutionDisabled', {value: disableJS});
     // No timeout needed for Page.navigate. See https://github.com/GoogleChrome/lighthouse/pull/6413.
     const waitforPageNavigateCmd = this._innerSendCommand('Page.navigate', undefined, {url});
 

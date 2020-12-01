@@ -182,7 +182,6 @@ const defaultConfig = {
     blockedUrlPatterns: ['*.css', '*.jpg', '*.jpeg', '*.png', '*.gif', '*.svg', '*.ttf', '*.woff', '*.woff2'],
     gatherers: [
       'http-redirect',
-      'html-without-javascript',
     ],
   }],
   audits: [
