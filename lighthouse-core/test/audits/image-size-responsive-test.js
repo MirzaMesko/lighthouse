@@ -23,7 +23,7 @@ function generateImage(clientSize, naturalSize, props, src = 'https://google.com
       right: clientSize.displayedWidth,
     },
   };
-  Object.assign(image, clientSize, naturalSize, clientRect, props);
+  Object.assign(image, clientSize, naturalSize, clientRect, {cssComputedObjectFit: 'fill', ...props});
   return image;
 }
 

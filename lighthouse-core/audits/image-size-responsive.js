@@ -65,7 +65,6 @@ function isVisible(imageRect, viewportDimensions) {
  * @return {boolean}
  */
 function isCandidate(image) {
-  const reqObjectFitProperties = ['cover', 'contain', 'scale-down', 'none'];
   /** image-rendering solution for pixel art scaling.
    * https://developer.mozilla.org/en-US/docs/Games/Techniques/Crisp_pixel_art_look
   */
@@ -84,7 +83,7 @@ function isCandidate(image) {
   if (image.isCss) {
     return false;
   }
-  if (reqObjectFitProperties.includes(image.cssComputedObjectFit)) {
+  if (image.cssComputedObjectFit !== 'fill') {
     return false;
   }
   // Check if pixel art scaling is used.
