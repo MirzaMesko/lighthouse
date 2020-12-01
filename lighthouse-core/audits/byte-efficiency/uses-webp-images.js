@@ -50,11 +50,10 @@ class UsesWebPImages extends ByteEfficiencyAudit {
   }
 
   /**
-   * @param {LH.Artifacts.ImageElement} imageElement
+   * @param {{naturalWidth: number, naturalHeight: number}} imageElement
    * @return {number}
    */
   static estimateWebPSizeFromDimensions(imageElement) {
-    // @ts-ignore - TS warns that naturalWidth and naturalHeight can be undefined, checked on L100.
     const totalPixels = imageElement.naturalWidth * imageElement.naturalHeight;
     // See uses-optimized-images for the rationale behind our 2 byte-per-pixel baseline and
     // JPEG compression ratio of 8:1.
@@ -96,10 +95,12 @@ class UsesWebPImages extends ByteEfficiencyAudit {
           continue;
         }
 
+        const naturalHeight = imageElement.naturalHeight;
+        const naturalWidth = imageElement.naturalWidth;
         // If naturalHeight or naturalWidth are falsy, information is not valid, skip.
-        if (!imageElement.naturalWidth || !imageElement.naturalHeight) continue;
+        if (!naturalWidth || !naturalHeight) continue;
 
-        webpSize = UsesWebPImages.estimateWebPSizeFromDimensions(imageElement);
+        webpSize = UsesWebPImages.estimateWebPSizeFromDimensions({naturalHeight, naturalWidth});
         fromProtocol = false;
       }
 

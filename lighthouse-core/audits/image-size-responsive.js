@@ -90,19 +90,18 @@ function isCandidate(image) {
 }
 
 /**
- * @param {LH.Artifacts.ImageElement} image
+ * @param {{naturalWidth: number, naturalHeight: number, displayedWidth: number, displayedHeight: number}} image
  * @param {number} DPR
  * @return {boolean}
  */
 function imageHasRightSize(image, DPR) {
   const [expectedWidth, expectedHeight] =
       allowedImageSize(image.displayedWidth, image.displayedHeight, DPR);
-  // @ts-ignore - TS warns that naturalWidth and naturalHeight can be undefined, checked in L220.
   return image.naturalWidth >= expectedWidth && image.naturalHeight >= expectedHeight;
 }
 
 /**
- * @param {LH.Artifacts.ImageElement} image
+ * @param {LH.Artifacts.ImageElement & {naturalWidth: number, naturalHeight: number}} image
  * @param {number} DPR
  * @return {Result}
  */
@@ -114,7 +113,6 @@ function getResult(image, DPR) {
     elidedUrl: URL.elideDataURI(image.src),
     displayedSize: `${image.displayedWidth} x ${image.displayedHeight}`,
     actualSize: `${image.naturalWidth} x ${image.naturalHeight}`,
-    // @ts-ignore - TS warns that naturalWidth and naturalHeight can be undefined, checked in L220.
     actualPixels: image.naturalWidth * image.naturalHeight,
     expectedSize: `${expectedWidth} x ${expectedHeight}`,
     expectedPixels: expectedWidth * expectedHeight,
@@ -215,12 +213,25 @@ class ImageSizeResponsive extends Audit {
    */
   static audit(artifacts) {
     const DPR = artifacts.ViewportDimensions.devicePixelRatio;
-    const results = Array
+
+    const validImages = Array
       .from(artifacts.ImageElements)
       .filter(isCandidate)
-      .filter(image => !imageHasRightSize(image, DPR))
-      .filter(image => isVisible(image.clientRect, artifacts.ViewportDimensions))
-      .map(image => getResult(image, DPR));
+      .filter(image => {
+        const {naturalWidth, naturalHeight} = image;
+        if (!naturalWidth || !naturalHeight) return false;
+        return !imageHasRightSize({...image, naturalWidth, naturalHeight}, DPR);
+      })
+      .filter(image => isVisible(image.clientRect, artifacts.ViewportDimensions));
+
+    /** @type {Array<Result>} */
+    const results = [];
+    for (const image of validImages) {
+      const naturalHeight = image.naturalHeight;
+      const naturalWidth = image.naturalWidth;
+      if (!naturalWidth || !naturalHeight) continue;
+      results.push(getResult({...image, naturalHeight, naturalWidth}, DPR));
+    }
 
     /** @type {LH.Audit.Details.Table['headings']} */
     const headings = [

@@ -50,11 +50,10 @@ class UsesOptimizedImages extends ByteEfficiencyAudit {
   }
 
   /**
-   * @param {LH.Artifacts.ImageElement} imageElement
+   * @param {{naturalWidth: number, naturalHeight: number}} imageElement
    * @return {number}
    */
   static estimateJPEGSizeFromDimensions(imageElement) {
-    // @ts-ignore - TS warns that naturalWidth and naturalHeight can be undefined, checked on L100.
     const totalPixels = imageElement.naturalWidth * imageElement.naturalHeight;
     // Even JPEGs with lots of detail can usually be compressed down to <1 byte per pixel
     // Using 4:2:2 subsampling already gets an uncompressed bitmap to 2 bytes per pixel.
@@ -98,9 +97,11 @@ class UsesOptimizedImages extends ByteEfficiencyAudit {
         }
 
         // If naturalHeight or naturalWidth are falsy, information is not valid, skip.
-        if (!imageElement.naturalHeight || !imageElement.naturalWidth) continue;
-
-        jpegSize = UsesOptimizedImages.estimateJPEGSizeFromDimensions(imageElement);
+        const naturalHeight = imageElement.naturalHeight;
+        const naturalWidth = imageElement.naturalWidth;
+        if (!naturalHeight || !naturalWidth) continue;
+        // eslint-disable-next-line max-len
+        jpegSize = UsesOptimizedImages.estimateJPEGSizeFromDimensions({naturalHeight, naturalWidth});
         fromProtocol = false;
       }
 

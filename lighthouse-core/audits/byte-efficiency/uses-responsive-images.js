@@ -46,7 +46,7 @@ class UsesResponsiveImages extends ByteEfficiencyAudit {
   }
 
   /**
-   * @param {LH.Artifacts.ImageElement} image
+   * @param {LH.Artifacts.ImageElement & {naturalWidth: number, naturalHeight: number}} image
    * @param {LH.Artifacts.ViewportDimensions} ViewportDimensions
    * @return {null|LH.Audit.ByteEfficiencyItem};
    */
@@ -63,7 +63,6 @@ class UsesResponsiveImages extends ByteEfficiencyAudit {
     if (!usedPixels) {
       const viewportWidth = ViewportDimensions.innerWidth;
       const viewportHeight = ViewportDimensions.innerHeight * 2;
-      // @ts-ignore TS warns that naturalWidth and naturalHeight can be undefined, checked on L123.
       const imageAspectRatio = image.naturalWidth / image.naturalHeight;
       const viewportAspectRatio = viewportWidth / viewportHeight;
       let usedViewportWidth = viewportWidth;
@@ -79,7 +78,6 @@ class UsesResponsiveImages extends ByteEfficiencyAudit {
     }
 
     const url = URL.elideDataURI(image.src);
-    // @ts-ignore TS warns that naturalWidth and naturalHeight can be undefined, checked on L123.
     const actualPixels = image.naturalWidth * image.naturalHeight;
     const wastedRatio = 1 - (usedPixels / actualPixels);
     const totalBytes = image.resourceSize;
@@ -111,10 +109,12 @@ class UsesResponsiveImages extends ByteEfficiencyAudit {
         continue;
       }
 
+      const naturalHeight = image.naturalHeight;
+      const naturalWidth = image.naturalWidth;
       // If naturalHeight or naturalWidth are falsy, information is not valid, skip.
-      if (!image.naturalWidth || !image.naturalHeight) continue;
-
-      const processed = UsesResponsiveImages.computeWaste(image, ViewportDimensions);
+      if (!naturalWidth || !naturalHeight) continue;
+      // eslint-disable-next-line max-len
+      const processed = UsesResponsiveImages.computeWaste({...image, naturalHeight, naturalWidth}, ViewportDimensions);
       if (!processed) continue;
 
       // Don't warn about an image that was later used appropriately
