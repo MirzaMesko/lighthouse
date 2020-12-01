@@ -112,7 +112,7 @@ describe('Images: size audit', () => {
     clientSize: [100, 100],
     naturalSize: [5, 5],
     props: {
-      ObjectFit: 'cover',
+      cssComputedObjectFit: 'cover',
     },
   });
 
@@ -121,7 +121,7 @@ describe('Images: size audit', () => {
     clientSize: [100, 100],
     naturalSize: [5, 5],
     props: {
-      ImageRendering: 'pixelated',
+      cssComputedImageRendering: 'pixelated',
     },
   });
 

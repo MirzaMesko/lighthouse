@@ -78,8 +78,8 @@ function getHTMLImages(allElements) {
       isPicture,
       loading: element.loading,
       resourceSize: 0, // this will get overwritten below
-      ObjectFit: computedStyle.getPropertyValue('object-fit'),
-      ImageRendering: computedStyle.getPropertyValue('image-rendering'),
+      cssComputedObjectFit: computedStyle.getPropertyValue('object-fit'),
+      cssComputedImageRendering: computedStyle.getPropertyValue('image-rendering'),
       isInShadowDOM: element.getRootNode() instanceof ShadowRoot,
       // @ts-expect-error - getNodeDetails put into scope via stringification
       ...getNodeDetails(element),
@@ -126,8 +126,8 @@ function getCSSImages(allElements) {
       isCss: true,
       isPicture: false,
       isInShadowDOM: element.getRootNode() instanceof ShadowRoot,
-      ObjectFit: '',
-      ImageRendering: style.getPropertyValue('image-rendering'),
+      cssComputedObjectFit: '',
+      cssComputedImageRendering: style.getPropertyValue('image-rendering'),
       resourceSize: 0, // this will get overwritten below
       // @ts-expect-error - getNodeDetails put into scope via stringification
       ...getNodeDetails(element),

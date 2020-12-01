@@ -84,11 +84,11 @@ function isCandidate(image) {
   if (image.isCss) {
     return false;
   }
-  if (reqObjectFitProperties.includes(image.ObjectFit)) {
+  if (reqObjectFitProperties.includes(image.cssComputedObjectFit)) {
     return false;
   }
   // Check if pixel art scaling is used.
-  if (reqPixelScaling.includes(image.ImageRendering)) {
+  if (reqPixelScaling.includes(image.cssComputedImageRendering)) {
     return false;
   }
   // Check if density descriptor is used.

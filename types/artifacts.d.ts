@@ -432,9 +432,9 @@ declare global {
         /** Flags whether this element was contained within a ShadowRoot */
         isInShadowDOM: boolean;
         /** `object-fit` CSS property. */
-        ObjectFit: string;
+        cssComputedObjectFit: string;
         /** `image-rendering` propertry. */
-        ImageRendering: string;
+        cssComputedImageRendering: string;
         /** The size of the underlying image file in bytes. 0 if the file could not be identified. */
         resourceSize: number;
         /** The MIME type of the underlying image file. */
