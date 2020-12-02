@@ -23,7 +23,8 @@ declare global {
     }
 
     /** The limited driver interface shared between pre and post Fraggle Rock Lighthouse. */
-    export interface FRTransitionalDriver extends FRProtocolSession {
+    export interface FRTransitionalDriver {
+      defaultSession: FRProtocolSession;
       evaluateAsync(expression: string, options?: {useIsolation?: boolean}): Promise<any>;
     }
 
@@ -38,7 +39,6 @@ declare global {
       driver: Driver;
       passConfig: Config.Pass
       settings: Config.Settings;
-      options?: object;
       /** Gatherers can push to this array to add top-level warnings to the LHR. */
       LighthouseRunWarnings: Array<string | IcuMessage>;
       baseArtifacts: BaseArtifacts;
