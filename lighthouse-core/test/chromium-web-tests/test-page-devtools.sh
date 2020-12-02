@@ -47,7 +47,11 @@ echo "
 " > "$DEVTOOLS_PATH/test/webtests/http/tests/devtools/lighthouse/lighthouse-run-dt.js"
 
 set +e
-bash "$SCRIPT_DIR/web-test-server.sh" --no-show-results --time-out-ms=60000 http/tests/devtools/lighthouse/lighthouse-run-dt.js
+bash "$SCRIPT_DIR/web-test-server.sh" \
+  --no-show-results \
+  --time-out-ms=60000 \
+  --additional-driver-flag=--disable-blink-features=TrustTokens,TrustTokensAlwaysAllowIssuance \
+  http/tests/devtools/lighthouse/lighthouse-run-dt.js
 set -e
 
 # Copy results to latest-run folder.

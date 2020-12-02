@@ -65,12 +65,19 @@ while read url; do
 done <"$1"
 
 set +e
-bash "$SCRIPT_DIR/web-test-server.sh" --no-show-results --no-retry-failures --time-out-ms=60000 http/tests/devtools/lighthouse-run
+bash "$SCRIPT_DIR/web-test-server.sh" \
+  --no-show-results \
+  --no-retry-failures \
+  --time-out-ms=60000 \
+  --additional-driver-flag=--disable-blink-features=TrustTokens,TrustTokensAlwaysAllowIssuance \
+  http/tests/devtools/lighthouse-run
 set -e
 
 OUTPUT_DIR="$LH_ROOT/latest-run/devtools-lhrs" 
 if [ ! -d "$OUTPUT_DIR" ]; then
   mkdir "$OUTPUT_DIR"
+else
+  rm -rf "$OUTPUT_DIR"/*
 fi
 
 # Copy results to latest-run folder.
