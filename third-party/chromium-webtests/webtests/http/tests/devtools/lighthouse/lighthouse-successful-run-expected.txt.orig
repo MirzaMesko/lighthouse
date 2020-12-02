@@ -570,7 +570,11 @@ viewport-ad-density: notApplicable
 visual-order-follows-dom: manual
 works-offline: fail
 
-# of .lh-audit divs: 157
+<<<<<<< HEAD
+# of .lh-audit divs: 156
+=======
+# of .lh-audit divs: 158
+>>>>>>> master
 
 .lh-audit divs:
 resource-summary
