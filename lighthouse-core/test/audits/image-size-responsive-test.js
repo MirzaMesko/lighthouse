@@ -23,6 +23,7 @@ function generateImage(clientSize, naturalSize, props, src = 'https://google.com
       right: clientSize.displayedWidth,
     },
   };
+  // eslint-disable-next-line max-len
   Object.assign(image, clientSize, naturalSize, clientRect, {cssComputedObjectFit: 'fill', ...props});
   return image;
 }
