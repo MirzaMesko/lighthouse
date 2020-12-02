@@ -5,7 +5,6 @@
  */
 'use strict';
 
-const _ = require('lodash');
 const Driver = require('./gather/driver.js');
 const Runner = require('../runner.js');
 const Config = require('../config/config.js');
@@ -67,7 +66,6 @@ async function snapshot(options) {
           .then(() => instance.afterPass({driver}))
           .catch(err => err);
 
-        // @ts-expect-error tsc can't yet express that artifactName is not a union of types.
         artifacts[artifactName] = artifact;
       }
 

@@ -22,20 +22,16 @@ const HEADER_SAFELIST = new Set(['x-robots-tag', 'link']);
 const lhRootDirPath = path.join(__dirname, '../../../');
 
 class Server {
+  baseDir = __dirname;
+
   constructor() {
     this._server = http.createServer(this._requestHandler.bind(this));
     /** @type {(data: string) => string=} */
     this._dataTransformer = undefined;
-    this._baseDir = __dirname;
   }
 
   getPort() {
     return this._server.address().port;
-  }
-
-  /** @param {string} baseDir */
-  setBaseDir(baseDir) {
-    this._baseDir = baseDir;
   }
 
   /**
@@ -70,7 +66,7 @@ class Server {
     const requestUrl = parseURL(request.url);
     const filePath = requestUrl.pathname;
     const queryString = requestUrl.search && parseQueryString(requestUrl.search.slice(1));
-    let absoluteFilePath = path.join(this._baseDir, filePath);
+    let absoluteFilePath = path.join(this.baseDir, filePath);
     const sendResponse = (statusCode, data) => {
       // Used by Smokerider.
       if (this._dataTransformer) data = this._dataTransformer(data);

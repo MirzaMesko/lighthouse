@@ -12,7 +12,7 @@ const lighthouse = require('../../fraggle-rock/api.js');
 const puppeteer = require('puppeteer');
 const StaticServer = require('../../../lighthouse-cli/test/fixtures/static-server.js').Server;
 
-jest.setTimeout(90e3);
+jest.setTimeout(90 * 1000);
 
 describe('Fraggle Rock API', () => {
   /** @type {InstanceType<StaticServer>} */
@@ -21,10 +21,13 @@ describe('Fraggle Rock API', () => {
   let browser;
   /** @type {import('puppeteer').Page} */
   let page;
+  /** @type {string} */
+  let serverBaseUrl;
 
   beforeAll(async () => {
     server = new StaticServer();
     await server.listen(0, '127.0.0.1');
+    serverBaseUrl = `http://localhost:${server.getPort()}`;
     browser = await puppeteer.launch({
       headless: true,
     });
@@ -45,11 +48,11 @@ describe('Fraggle Rock API', () => {
 
   describe('snapshot', () => {
     beforeEach(() => {
-      server.setBaseDir(path.join(__dirname, '../fixtures/fraggle-rock/snapshot-basic'));
+      server.baseDir = path.join(__dirname, '../fixtures/fraggle-rock/snapshot-basic');
     });
 
     it('should compute accessibility results on the page as-is', async () => {
-      await page.goto(`http://localhost:${server.getPort()}/onclick.html`);
+      await page.goto(`${serverBaseUrl}/onclick.html`);
       // Wait for the javascript to run
       await page.waitForSelector('button');
       await page.click('button');
