@@ -36,7 +36,6 @@ declare global {
       /** The url of the currently loaded page. If the main document redirects, this will be updated to keep track. */
       url: string;
       driver: Driver;
-      disableJavaScript?: boolean;
       passConfig: Config.Pass
       settings: Config.Settings;
       options?: object;
