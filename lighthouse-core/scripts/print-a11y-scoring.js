@@ -5,8 +5,10 @@
  */
 'use strict';
 
-const config = require('../config/default-config.js');
-if (!config.categories) throw new Error('wut');
+const Config = require('../config/config.js');
+
+const config = new Config(require('../config/default-config.js'));
+if (!config.categories || !config.audits) throw new Error('wut');
 
 const auditRefs = config.categories.accessibility.auditRefs;
 const sum = auditRefs.reduce((sum, item) => sum += item.weight, 0);
