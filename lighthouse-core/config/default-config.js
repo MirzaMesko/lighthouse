@@ -499,7 +499,7 @@ const defaultConfig = {
       manualDescription: str_(UIStrings.a11yCategoryManualDescription),
       // Audit weights are meant to match the aXe scoring system of
       // minor, moderate, serious, and critical.
-      // See the audits listed at dequeuniversity.com/rules/axe/3.2.
+      // See the audits listed at dequeuniversity.com/rules/axe/4.1.
       // Click on an audit and check the right hand column to see its severity.
       auditRefs: [
         {id: 'accesskeys', weight: 3, group: 'a11y-navigation'},
