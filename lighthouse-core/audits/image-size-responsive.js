@@ -192,7 +192,6 @@ function deduplicateResultsByUrl(results) {
 
 /**
  * Sort entries in descending order by the magnitude of the size deficit, i.e. most pressing issues listed first.
- *
  * @param {Result[]} results
  * @return {Result[]}
  */
