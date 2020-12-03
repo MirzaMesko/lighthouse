@@ -270,15 +270,17 @@ describe('ReportRenderer', () => {
       global.window = global.self;
       global.Node = global.self.Node;
       global.Element = global.self.Element;
+      global.navigator = {};
 
       // axe-core must be required after the global polyfills
       axe = require('axe-core');
     });
 
     afterAll(() => {
-      global.window = undefined;
-      global.Node = undefined;
-      global.Element = undefined;
+      delete global.window;
+      delete global.Node;
+      delete global.Element;
+      delete global.navigator;
     });
 
     it('renders without axe violations', (done) => {

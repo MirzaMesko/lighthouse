@@ -260,14 +260,19 @@ Auditing: Page transitions don't feel like they block on the network
 Auditing: Each page has a URL
 Auditing: `[accesskey]` values are unique
 Auditing: `[aria-*]` attributes match their roles
+Auditing: `button`, `link` and `menuitem` elements have an accessible name
 Auditing: `[aria-hidden="true"]` is not present on the document `<body>`
 Auditing: `[aria-hidden="true"]` elements do not contain focusable descendents
 Auditing: ARIA input fields have accessible names
+Auditing: ARIA meter nodes have an accessible name
+Auditing: ARIA progress bar nodes have an accessible name
 Auditing: `[role]`s have all required `[aria-*]` attributes
 Auditing: Elements with an ARIA `[role]` that require children to contain a specific `[role]` have all required children.
 Auditing: `[role]`s are contained by their required parent element
 Auditing: `[role]` values are valid
 Auditing: ARIA toggle fields have accessible names
+Auditing: ARIA tooltips have an accessible name
+Auditing: Tree items (`<div role="tree">...items here...</div>`) have an accessible name
 Auditing: `[aria-*]` attributes have valid values
 Auditing: `[aria-*]` attributes are valid and not misspelled
 Auditing: Buttons have an accessible name
@@ -286,7 +291,6 @@ Auditing: `<html>` element has a valid value for its `[lang]` attribute
 Auditing: Image elements have `[alt]` attributes
 Auditing: `<input type="image">` elements have `[alt]` text
 Auditing: Form elements have associated labels
-Auditing: Presentational `<table>` elements avoid using `<th>`, `<caption>` or the `[summary]` attribute.
 Auditing: Links have a discernible name
 Auditing: Lists contain only `<li>` elements and script supporting elements (`<script>` and `<template>`).
 Auditing: List items (`<li>`) are contained within `<ul>` or `<ol>` parent elements
@@ -298,7 +302,6 @@ Auditing: Cells in a `<table>` element that use the `[headers]` attribute refer 
 Auditing: `<th>` elements and elements with `[role="columnheader"/"rowheader"]` have data cells they describe.
 Auditing: `[lang]` attributes have a valid value
 Auditing: `<video>` elements contain a `<track>` element with `[kind="captions"]`
-Auditing: `<video>` elements contain a `<track>` element with `[kind="description"]`
 Auditing: Custom controls have associated labels
 Auditing: Custom controls have ARIA roles
 Auditing: User focus is not accidentally trapped in a region
@@ -410,14 +413,19 @@ ads-in-viewport: notApplicable
 appcache-manifest: pass
 apple-touch-icon: fail
 aria-allowed-attr: notApplicable
+aria-command-name: notApplicable
 aria-hidden-body: pass
 aria-hidden-focus: notApplicable
 aria-input-field-name: notApplicable
+aria-meter-name: notApplicable
+aria-progressbar-name: notApplicable
 aria-required-attr: notApplicable
 aria-required-children: notApplicable
 aria-required-parent: notApplicable
 aria-roles: notApplicable
 aria-toggle-field-name: notApplicable
+aria-tooltip-name: notApplicable
+aria-treeitem-name: pass
 aria-valid-attr: notApplicable
 aria-valid-attr-value: notApplicable
 async-ad-tags: notApplicable
@@ -485,7 +493,6 @@ label: notApplicable
 largest-contentful-paint: numeric
 largest-contentful-paint-element: informative
 layout-shift-elements: notApplicable
-layout-table: notApplicable
 legacy-javascript: numeric
 link-name: notApplicable
 link-text: pass
@@ -568,14 +575,13 @@ uses-webp-images: flaky
 valid-lang: notApplicable
 valid-source-maps: pass
 video-caption: notApplicable
-video-description: notApplicable
 viewport: fail
 viewport-ad-density: notApplicable
 visual-order-follows-dom: manual
 without-javascript: pass
 works-offline: fail
 
-# of .lh-audit divs: 158
+# of .lh-audit divs: 161
 
 .lh-audit divs:
 resource-summary
@@ -628,16 +634,21 @@ visual-order-follows-dom
 offscreen-content-hidden
 use-landmarks
 aria-hidden-body
+aria-treeitem-name
 color-contrast
 accesskeys
 aria-allowed-attr
+aria-command-name
 aria-hidden-focus
 aria-input-field-name
+aria-meter-name
+aria-progressbar-name
 aria-required-attr
 aria-required-children
 aria-required-parent
 aria-roles
 aria-toggle-field-name
+aria-tooltip-name
 aria-valid-attr-value
 aria-valid-attr
 button-name
@@ -653,7 +664,6 @@ html-lang-valid
 image-alt
 input-image-alt
 label
-layout-table
 link-name
 list
 listitem
@@ -665,7 +675,6 @@ td-headers-attr
 th-has-data-cells
 valid-lang
 video-caption
-video-description
 is-on-https
 external-anchors-use-rel-noopener
 geolocation-on-start
