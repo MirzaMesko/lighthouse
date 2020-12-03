@@ -6,7 +6,7 @@
 'use strict';
 
 /**
- * @fileoverview Ensures every ARIA treeitem node has an accessible name
+ * @fileoverview Ensures every ARIA button, link and menuitem element has an accessible name
  * See base class in axe-audit.js for audit() implementation.
  */
 
@@ -15,22 +15,22 @@ const i18n = require('../../lib/i18n/i18n.js');
 
 const UIStrings = {
   /** Title of an accesibility audit that evaluates if important elements have an accessible name. This title is descriptive of the successful state and is shown to users when no user action is required. */
-  title: 'Tree items (`<div role="tree">...items here...</div>`) have an accessible name',
+  title: '`button`, `link` and `menuitem` elements have an accessible name',
   /** Title of an accesibility audit that evaluates if important elements do not have accessible names. This title is descriptive of the failing state and is shown to users when there is a failure that needs to be addressed. */
-  failureTitle: 'Tree items do not have an accessible name.',
+  failureTitle: '`button`, `link` and `menuitem` elements do not have an accessible name.',
   /** Description of a Lighthouse audit that tells the user *why* they should try to pass. This is displayed after a user expands the section to see more. No character length limits. 'Learn More' becomes link text to additional documentation. */
   description: 'When an element doesn\'t have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers. [Learn more](https://web.dev/aria-toggle-field-name/).',
 };
 
 const str_ = i18n.createMessageInstanceIdFn(__filename, UIStrings);
 
-class AriaTreeitemName extends AxeAudit {
+class AriaCommandName extends AxeAudit {
   /**
    * @return {LH.Audit.Meta}
    */
   static get meta() {
     return {
-      id: 'aria-treeitem-name',
+      id: 'aria-command-name',
       title: str_(UIStrings.title),
       failureTitle: str_(UIStrings.failureTitle),
       description: str_(UIStrings.description),
@@ -39,5 +39,5 @@ class AriaTreeitemName extends AxeAudit {
   }
 }
 
-module.exports = AriaTreeitemName;
+module.exports = AriaCommandName;
 module.exports.UIStrings = UIStrings;
