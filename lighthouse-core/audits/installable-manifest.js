@@ -9,6 +9,7 @@ const Audit = require('./audit.js');
 const i18n = require('../lib/i18n/i18n.js');
 
 const UIStrings = {
+  // TODO: remove manifest, say manifest & service worker instead of just manifest
   /** Title of a Lighthouse audit that provides detail on if a website is installable as an application. This descriptive title is shown to users when a webapp is installable. */
   title: 'Web app manifest meets the installability requirements',
   /** Title of a Lighthouse audit that provides detail on if a website is installable as an application. This descriptive title is shown to users when a webapp is not installable. */
@@ -29,9 +30,8 @@ const UIStrings = {
   /**
    * @description TODO
    * @example {platform-not-supported-on-android} errorId
-   */  
+   */
   noErrorId: `Installability error id '{errorId}'`,
-  /** Error message explaining that the page is not loaded in the frame.  */
   'not-in-main-frame': 'Page is not loaded in the main frame',
   /** Error message explaining that the page is served from a secure origin. */
   'not-from-secure-origin': 'Page is not served from a secure origin',
@@ -45,25 +45,25 @@ const UIStrings = {
     'manifest-display-not-supported': `Manifest 'display' property must be one of 'standalone', 'fullscreen', or 'minimal-ui'`,
     /** Error message explaining that the manifest could not be fetched, might be empty, or could not be parsed. */
     'manifest-empty': `Manifest could not be fetched, is empty, or could not be parsed`,
-    /** Error message explaining that no matching service worker was detected, 
+    /** Error message explaining that no matching service worker was detected,
    * and provides a suggestion to reload the page or check whether the scope of the service worker
    * for the current page encloses the scope and start URL from the manifest. */
-    'no-matching-service-worker': `No matching service worker detected. You may need to reload the page, 
-    or check that the scope of the service worker for the current page 
+    'no-matching-service-worker': `No matching service worker detected. You may need to reload the page,
+    or check that the scope of the service worker for the current page
     encloses the scope and start URL from the manifest.`,
   /**
   * @description Error message explaining that the manifest does not contain a suitable icon.
   * @example {192} value0
-  */  
-    'manifest-missing-suitable-icon': `Manifest does not contain a suitable icon - PNG, 
-                    SVG or WebP format of at least {value0}\xa0px 
-                    is required, the sizes attribute must be set, and the purpose attribute, 
+  */
+    'manifest-missing-suitable-icon': `Manifest does not contain a suitable icon - PNG,
+                    SVG or WebP format of at least {value0}\xa0px
+                    is required, the sizes attribute must be set, and the purpose attribute,
                     if set, must include "any" or "maskable".`,
 
   /**
   * @description Error message explaining that the manifest does not supply an icon of the correct format.
   * @example {192} value0
-  */  
+  */
     'no-acceptable-icon': `No supplied icon is at least {value0}\xa0px square in PNG, SVG or WebP format`,
 
     /** Error message explaining that the downloaded icon was empty or corrupt. */
@@ -89,17 +89,16 @@ const UIStrings = {
     'no-url-for-service-worker': `Could not check service worker without a 'start_url' field in the manifest`,
     /**Error message explaining that the manifest specifies prefer_related_applications: true. */
     'prefer-related-applications': `Manifest specifies prefer_related_applications: true`,
-    /** Error message explaining that prefer_related_applications is only supported on Chrome Beta and Stable channe 
+    /** Error message explaining that prefer_related_applications is only supported on Chrome Beta and Stable channe
                on Android. */
-    'prefer-related-applications-only-beta-stable': `prefer_related_applications is only supported on Chrome Beta and Stable channe 
+    'prefer-related-applications-only-beta-stable': `prefer_related_applications is only supported on Chrome Beta and Stable channe
                 on Android.`,
-    /** Error message explaining that the manifest contains 'display_override' field, and the first supported display 
+    /** Error message explaining that the manifest contains 'display_override' field, and the first supported display
                mode must be one of 'standalone', 'fulcreen', or 'minimal-ui. */
-    'manifest-display-override-not-supported': `Manifest contains 'display_override' field, and the first supported display 
+    'manifest-display-override-not-supported': `Manifest contains 'display_override' field, and the first supported display
                 mode must be one of 'standalone', 'fulcreen', or 'minimal-ui`,
-
-    /** Error message explaining that the web manifest's URL changed while the manifest was being downloaded by the browser. */
-    'manifest-location-changed': `Manifest URL changed while the manifest was being fetched.`
+     /** Error message explaining that the web manifest's URL changed while the manifest was being downloaded by the browser. */
+    'manifest-location-changed': `Manifest URL changed while the manifest was being fetched.`,
 };
 
 const str_ = i18n.createMessageInstanceIdFn(__filename, UIStrings);
