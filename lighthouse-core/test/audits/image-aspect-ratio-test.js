@@ -12,8 +12,15 @@ const assert = require('assert').strict;
 
 function generateImage(clientSize, naturalSize, props, src = 'https://google.com/logo.png') {
   const image = {src, mimeType: 'image/png'};
-  Object.assign(image, clientSize, naturalSize, {cssComputedObjectFit: 'fill', ...props});
-  return image;
+  //Object.assign(image, clientSize, naturalSize, {cssComputedObjectFit: 'fill', ...props});
+  return {
+    src,
+    mimeType: '...',
+    cssComputedObjectFit: 'fill', 
+    ...clientSize,
+    ...naturalSize,
+    ...props,
+  };
 }
 
 describe('Images: aspect-ratio audit', () => {
