@@ -11,12 +11,10 @@ const assert = require('assert').strict;
 /* eslint-env jest */
 
 function generateImage(clientSize, naturalSize, props, src = 'https://google.com/logo.png') {
-  const image = {src, mimeType: 'image/png'};
-  //Object.assign(image, clientSize, naturalSize, {cssComputedObjectFit: 'fill', ...props});
   return {
     src,
     mimeType: '...',
-    cssComputedObjectFit: 'fill', 
+    cssComputedObjectFit: 'fill',
     ...clientSize,
     ...naturalSize,
     ...props,
