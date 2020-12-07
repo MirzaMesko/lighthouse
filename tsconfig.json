@@ -2,7 +2,7 @@
   "compilerOptions": {
     "noEmit": true,
     "module": "commonjs",
-    "target": "ES2017",
+    "target": "ES2019",
     "allowJs": true,
     "checkJs": true,
     "strict": true,
