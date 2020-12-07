@@ -12,7 +12,7 @@ const lighthouse = require('../../fraggle-rock/api.js');
 const puppeteer = require('puppeteer');
 const StaticServer = require('../../../lighthouse-cli/test/fixtures/static-server.js').Server;
 
-jest.setTimeout(90 * 1000);
+jest.setTimeout(90_000);
 
 describe('Fraggle Rock API', () => {
   /** @type {InstanceType<StaticServer>} */
