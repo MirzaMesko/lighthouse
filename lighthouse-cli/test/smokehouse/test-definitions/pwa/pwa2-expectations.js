@@ -77,9 +77,6 @@ module.exports = [
           scoreDisplayMode: 'manual',
         },
       },
-      runWarnings: {
-        length: 1,
-      },
     },
   },
 
