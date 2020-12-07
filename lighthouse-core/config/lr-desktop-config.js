@@ -15,6 +15,7 @@ const config = {
     maxWaitForLoad: 35 * 1000,
     emulatedFormFactor: 'desktop',
     throttling: desktopDense4G,
+    skipAudits: ['uses-http2'],
   },
 };
 
