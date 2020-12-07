@@ -1224,7 +1224,7 @@
   ],
   "ImageElements": [
     {
-      "src": "http://localhost:64707/dobetterweb/lighthouse-480x318.jpg?iar1",
+      "src": "http://localhost:54793/dobetterweb/lighthouse-480x318.jpg?iar1",
       "srcset": "",
       "displayedWidth": 120,
       "displayedHeight": 15,
@@ -1263,7 +1263,7 @@
       "cssHeight": "15px"
     },
     {
-      "src": "http://localhost:64707/dobetterweb/lighthouse-480x318.jpg?iar2",
+      "src": "http://localhost:54793/dobetterweb/lighthouse-480x318.jpg?iar2",
       "srcset": "",
       "displayedWidth": 120,
       "displayedHeight": 80,
@@ -1302,7 +1302,7 @@
       "cssHeight": "80px"
     },
     {
-      "src": "http://localhost:64707/dobetterweb/lighthouse-480x318.jpg?isr1",
+      "src": "http://localhost:54793/dobetterweb/lighthouse-480x318.jpg?isr1",
       "srcset": "",
       "displayedWidth": 4800,
       "displayedHeight": 3180,
@@ -1341,7 +1341,7 @@
       "cssHeight": "3180px"
     },
     {
-      "src": "http://localhost:64707/dobetterweb/lighthouse-480x318.jpg?isr2",
+      "src": "http://localhost:54793/dobetterweb/lighthouse-480x318.jpg?isr2",
       "srcset": "",
       "displayedWidth": 120,
       "displayedHeight": 80,
@@ -1361,8 +1361,8 @@
       "loading": "auto",
       "cssComputedObjectFit": "fill",
       "cssComputedImageRendering": "auto",
-      "lhId": "page-3-IMG",
       "isInShadowDOM": false,
+      "lhId": "page-3-IMG",
       "devtoolsNodePath": "3,HTML,1,BODY,18,IMG",
       "selector": "body > img",
       "boundingRect": {
@@ -1380,7 +1380,7 @@
       "cssHeight": "80px"
     },
     {
-      "src": "http://localhost:49186/dobetterweb/lighthouse-480x318.jpg?isr3",
+      "src": "http://localhost:54793/dobetterweb/lighthouse-480x318.jpg?isr3",
       "srcset": "",
       "displayedWidth": 960,
       "displayedHeight": 636,
@@ -1394,7 +1394,6 @@
       "naturalHeight": 318,
       "attributeWidth": "960",
       "attributeHeight": "636",
-      "lhId": "page-4-IMG",
       "cssComputedPosition": "absolute",
       "isCss": false,
       "isPicture": false,
@@ -1402,6 +1401,7 @@
       "cssComputedObjectFit": "fill",
       "cssComputedImageRendering": "pixelated",
       "isInShadowDOM": false,
+      "lhId": "page-4-IMG",
       "devtoolsNodePath": "3,HTML,1,BODY,20,IMG",
       "selector": "body > img",
       "boundingRect": {
@@ -1419,7 +1419,7 @@
       "cssHeight": "636px"
     },
     {
-      "src": "http://localhost:49186/dobetterweb/lighthouse-480x318.jpg",
+      "src": "http://localhost:54793/dobetterweb/lighthouse-480x318.jpg",
       "srcset": "lighthouse-480x318.jpg 2x",
       "displayedWidth": 960,
       "displayedHeight": 636,
@@ -1458,7 +1458,7 @@
       "cssHeight": "636px"
     },
     {
-      "src": "http://localhost:64707/dobetterweb/lighthouse-rotating.gif",
+      "src": "http://localhost:54793/dobetterweb/lighthouse-rotating.gif",
       "srcset": "",
       "displayedWidth": 811,
       "displayedHeight": 462,
@@ -1497,7 +1497,7 @@
       "cssHeight": "462px"
     },
     {
-      "src": "blob:http://localhost:64707/803723f3-114a-4dbd-ad67-c44f8174ef58",
+      "src": "blob:http://localhost:54793/687dadcc-19c5-45e9-ba2b-7138c04889d7",
       "srcset": "",
       "displayedWidth": 16,
       "displayedHeight": 16,
@@ -1529,11 +1529,11 @@
         "width": 16,
         "height": 16
       },
-      "snippet": "<img src=\"blob:http://localhost:64707/803723f3-114a-4dbd-ad67-c44f8174ef58\">",
+      "snippet": "<img src=\"blob:http://localhost:54793/687dadcc-19c5-45e9-ba2b-7138c04889d7\">",
       "nodeLabel": "img"
     },
     {
-      "src": "filesystem:http://localhost:64707/temporary/empty-0.4587600445763731.png",
+      "src": "filesystem:http://localhost:54793/temporary/empty-0.32727109276310107.png",
       "srcset": "",
       "displayedWidth": 16,
       "displayedHeight": 16,
@@ -1565,7 +1565,7 @@
         "width": 16,
         "height": 16
       },
-      "snippet": "<img src=\"filesystem:http://localhost:64707/temporary/empty-0.4587600445763731.png\">",
+      "snippet": "<img src=\"filesystem:http://localhost:54793/temporary/empty-0.32727109276310107.png\">",
       "nodeLabel": "img"
     }
   ],
