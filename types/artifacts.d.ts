@@ -436,8 +436,6 @@ declare global {
         cssComputedObjectFit: string;
         /** `image-rendering` propertry. */
         cssComputedImageRendering: string;
-        /** The size of the underlying image file in bytes. 0 if the file could not be identified. */
-        resourceSize: number;
         /** The MIME type of the underlying image file. */
         mimeType?: string;
         /** The loading attribute of the image. */
