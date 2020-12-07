@@ -50,8 +50,7 @@ async function snapshot(options) {
       };
 
       const gatherers = (config.passes || [])
-        .map(pass => pass.gatherers)
-        .reduce((a, b) => a.concat(b), []);
+        .flatMap(pass => pass.gatherers);
 
       /** @type {Partial<LH.GathererArtifacts>} */
       const artifacts = {};
