@@ -100,8 +100,8 @@ class UsesOptimizedImages extends ByteEfficiencyAudit {
         const naturalHeight = imageElement.naturalHeight;
         const naturalWidth = imageElement.naturalWidth;
         if (!naturalHeight || !naturalWidth) continue;
-        // eslint-disable-next-line max-len
-        jpegSize = UsesOptimizedImages.estimateJPEGSizeFromDimensions({naturalHeight, naturalWidth});
+        jpegSize =
+          UsesOptimizedImages.estimateJPEGSizeFromDimensions({naturalHeight, naturalWidth});
         fromProtocol = false;
       }
 
