@@ -80,9 +80,7 @@ mkdir -p "$OUTPUT_DIR"
 # Sometimes there will be extra output before the line with LHR. To get around this, only copy the last line with content.
 COUNTER=0
 for file in "$LH_ROOT/.tmp/layout-test-results/http/tests/devtools/lighthouse-run"/lighthouse-run-*-actual.txt; do
-  [ -f "$file" ] || break
-  grep "lighthouseVersion" -m 1 "$file" \
-  > "$OUTPUT_DIR/devtools-lhr-$COUNTER.json" 
+  grep "lighthouseVersion" -m 1 "$file" > "$OUTPUT_DIR/devtools-lhr-$COUNTER.json" 
   COUNTER=$[$COUNTER +1]
 done
 
