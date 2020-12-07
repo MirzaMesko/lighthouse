@@ -51,7 +51,7 @@ module.exports = [
       audits: {
         'largest-contentful-paint': {
           // LCP is after the ~7s XHR and the ~7s image.
-          numericValue: '>13500',
+          numericValue: '>14000',
         },
       },
     },
