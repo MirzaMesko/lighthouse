@@ -491,7 +491,6 @@ link-name: notApplicable
 link-text: pass
 list: notApplicable
 listitem: notApplicable
-load-fast-enough-for-pwa: flaky
 loads-ad-tag-over-https: notApplicable
 loads-gpt-from-official-source: notApplicable
 logical-tab-order: manual
@@ -699,7 +698,6 @@ plugins
 robots-txt
 image-alt
 canonical
-load-fast-enough-for-pwa
 works-offline
 offline-start-url
 is-on-https
