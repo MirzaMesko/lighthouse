@@ -85,13 +85,6 @@ throttle --stop
 
 Lighthouse applies CPU throttling to emulate a mid-tier mobile device even when run on far more powerful desktop hardware.
 
-## Types of CPU Throttling
-
-Within web performance testing, there are two typical styles of CPU throttling:
-
-1. **_Simulated throttling_**, which Lighthouse uses by **default**, uses a simulation of a page load, based on the data observed in the initial unthrottled load. This approach makes it very fast. However, due to the imperfect nature of predicting alternate execution paths, there is inherent inaccuracy that is summarized in this doc: [Lighthouse Metric Variability and Accuracy](https://docs.google.com/document/d/1BqtL-nG53rxWOI5RO0pItSRPowZVnYJ_gBEQCJ5EeUE/edit). The TLDR: while it's fairly accurate for most circumstances, it suffers from edge cases and a deep investigation to performance should use _applied_ CPU throttling tools.
-1. **_Applied throttling_** , also called _`devtools` throttling_ in Lighthouse configuration. This method actually interrupts execution of CPU work at periodic intervals to emulate a slower processor. It is [fairly accurate](https://docs.google.com/document/d/1jGHeGjjjzfTAE2WHXipKF3aqwF2bFA6r0B877nFtBpc/edit) and much easier than obtaining target hardware. The same underlying principle can be used by [linux cgroups](https://www.kernel.org/doc/html/latest/scheduler/sched-bwc.html) to throttle any process, not just the browser. Other tools like [WebPageTest use applied CPU throttling](https://github.com/WPO-Foundation/wptagent/commit/f7fe0d6b5b01bd1b042a1fe3144c68a6bff846a6) offered by DevTools.
-
 ## Benchmarking CPU Power
 
 Unlike network throttling where objective criteria like RTT and throughput allow targeting of a specific environment, CPU throttling is expressed relative to the performance of the host device. This poses challenges to [variability in results across devices](./variability.md), so it's important to calibrate your device before attempting to compare different reports.
@@ -146,3 +139,10 @@ If your device's BenchmarkIndex falls on the _higher_ end of its bracket, use a 
 # Run Lighthouse with a custom CPU slowdown multiplier
 lighthouse --throttling.cpuSlowdownMultiplier=6 https://example.com
 ```
+
+## Types of CPU Throttling
+
+Within web performance testing, there are two typical styles of CPU throttling:
+
+1. **_Simulated throttling_**, which Lighthouse uses by **default**, uses a simulation of a page load, based on the data observed in the initial unthrottled load. This approach makes it very fast. However, due to the imperfect nature of predicting alternate execution paths, there is inherent inaccuracy that is summarized in this doc: [Lighthouse Metric Variability and Accuracy](https://docs.google.com/document/d/1BqtL-nG53rxWOI5RO0pItSRPowZVnYJ_gBEQCJ5EeUE/edit). The TLDR: while it's fairly accurate for most circumstances, it suffers from edge cases and a deep investigation to performance should use _applied_ CPU throttling tools.
+1. **_Applied throttling_** , also called _`devtools` throttling_ in Lighthouse configuration. This method actually interrupts execution of CPU work at periodic intervals to emulate a slower processor. It is [fairly accurate](https://docs.google.com/document/d/1jGHeGjjjzfTAE2WHXipKF3aqwF2bFA6r0B877nFtBpc/edit) and much easier than obtaining target hardware. The same underlying principle can be used by [linux cgroups](https://www.kernel.org/doc/html/latest/scheduler/sched-bwc.html) to throttle any process, not just the browser. Other tools like [WebPageTest use applied CPU throttling](https://github.com/WPO-Foundation/wptagent/commit/f7fe0d6b5b01bd1b042a1fe3144c68a6bff846a6) offered by DevTools.
