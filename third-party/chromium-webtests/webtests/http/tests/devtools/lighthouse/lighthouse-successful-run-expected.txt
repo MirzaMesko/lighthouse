@@ -578,6 +578,7 @@ works-offline: fail
 .lh-audit divs:
 resource-summary
 largest-contentful-paint-element
+long-tasks
 render-blocking-resources
 uses-responsive-images
 offscreen-images
@@ -610,7 +611,6 @@ third-party-facades
 layout-shift-elements
 uses-passive-event-listeners
 no-document-write
-long-tasks
 non-composited-animations
 unsized-images
 document-title
