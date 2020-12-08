@@ -30,7 +30,7 @@ function generateImage(clientSize, naturalSize, props, src = 'https://google.com
     ...naturalSize,
     ...clientRect,
     ...props,
-  }
+  };
 }
 
 describe('Images: size audit', () => {
