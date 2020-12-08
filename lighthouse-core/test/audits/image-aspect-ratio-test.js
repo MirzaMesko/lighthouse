@@ -13,7 +13,7 @@ const assert = require('assert').strict;
 function generateImage(clientSize, naturalSize, props, src = 'https://google.com/logo.png') {
   return {
     src,
-    mimeType: '...',
+    mimeType: 'image/png',
     cssComputedObjectFit: 'fill',
     ...clientSize,
     ...naturalSize,

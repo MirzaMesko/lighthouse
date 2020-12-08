@@ -68,9 +68,9 @@ function isCandidate(image) {
   /** image-rendering solution for pixel art scaling.
    * https://developer.mozilla.org/en-US/docs/Games/Techniques/Crisp_pixel_art_look
   */
-  const reqPixelScaling = ['pixelated', 'crisp-edges'];
+  const artisticImageRenderingValues = ['pixelated', 'crisp-edges'];
   // https://html.spec.whatwg.org/multipage/images.html#pixel-density-descriptor
-  const getDensityDescriptor = / \d+(\.\d+)?x/;
+  const densityDescriptorRegex = / \d+(\.\d+)?x/;
   if (image.displayedWidth <= 1 || image.displayedHeight <= 1) {
     return false;
   }
@@ -87,11 +87,11 @@ function isCandidate(image) {
     return false;
   }
   // Check if pixel art scaling is used.
-  if (reqPixelScaling.includes(image.cssComputedImageRendering)) {
+  if (artisticImageRenderingValues.includes(image.cssComputedImageRendering)) {
     return false;
   }
   // Check if density descriptor is used.
-  if (getDensityDescriptor.test(image.srcset)) {
+  if (densityDescriptorRegex.test(image.srcset)) {
     return false;
   }
   return true;

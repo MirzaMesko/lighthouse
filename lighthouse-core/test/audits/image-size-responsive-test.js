@@ -14,7 +14,6 @@ const WIDTH = 800;
 const HEIGHT = 600;
 
 function generateImage(clientSize, naturalSize, props, src = 'https://google.com/logo.png') {
-  const image = {src, mimeType: 'image/png'};
   const clientRect = {
     clientRect: {
       top: 0,
@@ -23,9 +22,15 @@ function generateImage(clientSize, naturalSize, props, src = 'https://google.com
       right: clientSize.displayedWidth,
     },
   };
-  // eslint-disable-next-line max-len
-  Object.assign(image, clientSize, naturalSize, clientRect, {cssComputedObjectFit: 'fill', ...props});
-  return image;
+  return {
+    cssComputedObjectFit: 'fill',
+    src,
+    mimeType: 'image/png',
+    ...clientSize,
+    ...naturalSize,
+    ...clientRect,
+    ...props,
+  }
 }
 
 describe('Images: size audit', () => {
